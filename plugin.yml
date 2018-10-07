@@ -1,0 +1,7 @@
+name: SwordFight
+main: mazaicrafty\swordfight\Main
+version: 1.0
+api: 4.0.0
+author: MazaiCrafty
+website: https://github.com/MazaiCrafty/SwordFight
+load: POSTWORLD

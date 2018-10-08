@@ -2,6 +2,7 @@
 
 namespace mazaicrafty\swordfight\sound;
 
+use pocketmine\Player;
 use pocketmine\level\sound\AnvilBreakSound;
 use pocketmine\level\sound\AnvilFallSound;
 use pocketmine\level\sound\AnvilUseSound;
@@ -22,7 +23,7 @@ use pocketmine\math\Vector3;
 
 class SoundModule{
 
-    private $sounds = [];
+    private static $sounds = [];
 
     public static function init(){
         self::$sounds[Sound::ANVIL_BREAK] = AnvilBreakSound::class;
@@ -45,7 +46,7 @@ class SoundModule{
 
     public static function createSoundToPlayer(int $soundId, Player $player, float $pitch = 0, int $id = null){
         $vector3 = new Vector3($player->getX(), $player->getY(), $player->getZ());
-        return self::createSound($sound, $vector3, $pitch, $id);
+        return self::createSound($soundId, $vector3, $pitch, $id);
     }
 
     public static function createSound(int $soundId, Vector3 $pos, float $pitch = 0, int $id = null){

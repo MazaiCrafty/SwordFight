@@ -32,7 +32,7 @@ class DetectHandTask extends Task{
                             new CoolTimeTask($player), 20 * 1
                         );
                     }
-                    return;
+                    continue;
                 }
 
                 foreach ($this->getWeaponIds() as $weaponId){

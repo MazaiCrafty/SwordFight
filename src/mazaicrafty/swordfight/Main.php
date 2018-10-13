@@ -15,6 +15,7 @@ class Main extends PluginBase{
 
     protected function onLoad(): void{
         self::$instance = $this;
+        SoundModule::init();
     }
 
     protected function onEnable(): void{
@@ -29,8 +30,9 @@ class Main extends PluginBase{
             'cool-time' => 5
         ]);
 
-        new EventListener($this);
-        SoundModule::init();
+        $this->getServer()->getPluginManager()->registerEvents(
+            new EventListener(), $this
+        );
 
         $this->getScheduler()->scheduleRepeatingTask(
             new DetectHandTask($this), 20 * 1

@@ -2,8 +2,7 @@
 
 namespace mazaicrafty\swordfight\sound;
 
-class Sound{
-    
+final class Sound{
     const ANVIL_BREAK = 1;
     const ANVIL_FALL = 2;
     const ANVIL_USE = 3;

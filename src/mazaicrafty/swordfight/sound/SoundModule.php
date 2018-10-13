@@ -44,15 +44,15 @@ class SoundModule{
         self::$sounds[Sound::GENERIC] = GenericSound::class;
     }
 
-    public static function createSoundToPlayer(int $soundId, Player $player, float $pitch = 0, int $id = null){
+    public static function createSoundToPlayer(int $soundId, Player $player, float $pitch = 0, int $id = null): GenericSound{
         $vector3 = new Vector3($player->getX(), $player->getY(), $player->getZ());
         return self::createSound($soundId, $vector3, $pitch, $id);
     }
 
-    public static function createSound(int $soundId, Vector3 $pos, float $pitch = 0, int $id = null){
+    public static function createSound(int $soundId, Vector3 $pos, float $pitch = 0, int $id = null): GenericSound{
         $sound = self::$sounds[$soundId];
         if ($soundId === Sound::GENERIC){
-            return new $soundInstance($pos, $id, $pitch);
+            return new $sound($pos, $id, $pitch);
         }
         return new $sound($pos, $pitch);
     }

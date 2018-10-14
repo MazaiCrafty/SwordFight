@@ -29,7 +29,7 @@ class WeaponCommand{
                 }
 
                 $id = explode(':', $this->args[3]);
-                if (!is_numeric($id[0] || !is_numeric($id[1]))){
+                if (!is_numeric($id[0]) || !is_numeric($id[1])){
                     $this->player->sendMessage("数字で入力してください");
                     return false;
                 }
@@ -43,7 +43,7 @@ class WeaponCommand{
                 }
 
                 $id = explode(':', $this->args[3]);
-                if (!is_numeric($id[0] || !is_numeric($id[1]))){
+                if (!is_numeric($id[0]) || !is_numeric($id[1])){
                     $this->player->sendMessage("数字で入力してください");
                     return false;
                 }

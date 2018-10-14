@@ -12,6 +12,8 @@ class SwordManager{
 
     private static $enablingFight = [];
 
+    private function __construct(){ }
+
     public static function setEnableFight(Player $player, array $data){
         self::setData($player, $data);
         $player->getLevel()->addSound(

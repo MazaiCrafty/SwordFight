@@ -6,11 +6,15 @@ use pocketmine\scheduler\Task;
 use pocketmine\item\Item;
 
 use mazaicrafty\swordfight\Main;
+use mazaicrafty\swordfight\ConfigManager;
 use mazaicrafty\swordfight\enchantment\Enchant;
 use mazaicrafty\swordfight\sound\Sound;
 use mazaicrafty\swordfight\sound\SoundModule;
 
 class DetectHandTask extends Task{
+
+    // Air itemID
+    const AIR = 0;
 
     private $plugin;
 
@@ -26,9 +30,8 @@ class DetectHandTask extends Task{
                 }
                 if (SwordManager::existsPlayer($player)){
                     if (SwordManager::isCoolTime($player)) continue;
-                    $weapon = SwordManager::getWeapon($player);
-                    if ($weapon->getId() !== $player->getInventory()->getItemInHand()->getId()){
-                        $this->plugin->getScheduler()->schedulerRepeatingTask(
+                    if ($player->getInventory()->getItemInHand()->getId() === self::AIR){
+                        $this->plugin->getScheduler()->scheduleRepeatingTask(
                             new CoolTimeTask($player), 20 * 1
                         );
                     }
@@ -56,10 +59,10 @@ class DetectHandTask extends Task{
     }
 
     public function getWorlds(): array{
-        return $this->plugin->getConfig()->get('world');
+        return ConfigManager::getConfig()->get('world');
     }
 
     public function getWeaponIds(): array{
-        return $this->plugin->getConfig()->get('weapon');
+        return ConfigManager::getConfig()->get('weapon');
     }
 }

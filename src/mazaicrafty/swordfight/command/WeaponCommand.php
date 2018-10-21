@@ -4,6 +4,8 @@ namespace mazaicrafty\swordfight\command;
 
 use pocketmine\command\CommandSender;
 
+use mazaicrafty\swordfight\ConfigManager;
+
 class WeaponCommand{
 
     private $sender;

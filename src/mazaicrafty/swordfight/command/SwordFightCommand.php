@@ -3,6 +3,7 @@
 namespace mazaicrafty\swordfight\command;
 
 use pocketmine\command\CommandSender;
+use pocketmine\command\ConsoleCommandSender;
 use pocketmine\command\PluginCommand;
 
 use mazaicrafty\swordfight\Main;
@@ -11,11 +12,15 @@ class SwordFightCommand extends PluginCommand{
 
     public function __construct(Main $plugin){
         parent::__construct("sf", $plugin);
-        $this->setPermission("sf.command.config");
         $this->setDescription("edit config");
     }
 
     public function execute(CommandSender $sender, string $label, array $args): bool{
+        if (!$sender->isOp() && !$sender instanceof ConsoleCommandSender){
+            $sender->sendMessage("権限がありません");
+            return false;
+        }
+
         if (!isset($args[0]) || !isset($args[1])){
             return false;
         }
@@ -31,5 +36,6 @@ class SwordFightCommand extends PluginCommand{
                 $command = new WorldCommand($sender, $args);
                 return $command->execute();
         }
+        return false;
     }
 }

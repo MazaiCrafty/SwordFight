@@ -24,7 +24,12 @@ class SwordManager{
 
     public static function removePlayer(Player $player){
         if (self::existsPlayer($player)){
-            $player->getInventory()->removeItem(self::getWeapon($player));
+            $weapon = self::getWeapon($player);
+            $player->getInventory()->removeItem($weapon);
+            $player->getInventory()->addItem(
+                Item::get($weapon->getId(), $weapon->getDamage(), 1)
+            );
+            
             unset(self::$enablingFight[$player->getName()]);
         }
     }
@@ -48,7 +53,9 @@ class SwordManager{
     }
 
     public static function setData(Player $player, array $data){
-        self::$enablingFight[$player->getName()] = $data;
+        foreach ($data as $key => $value){
+            self::$enablingFight[$player->getName()][$key] = $value;
+        }
     }
 
     public static function getData(Player $player, string $key){

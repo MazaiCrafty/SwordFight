@@ -46,7 +46,7 @@ class DetectHandTask extends Task{
                         $item->addEnchantment($instance->enchant());
                         SwordManager::setEnableFight($player, [
                             'using-weapon' => $item,
-                            'mode' => 'FIGHT'
+                            'cool-time' => false
                         ]);
                     }
                 }

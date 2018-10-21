@@ -29,7 +29,7 @@ class SwordManager{
             $player->getInventory()->addItem(
                 Item::get($weapon->getId(), $weapon->getDamage(), 1)
             );
-            
+
             unset(self::$enablingFight[$player->getName()]);
         }
     }
@@ -42,14 +42,11 @@ class SwordManager{
     }
 
     public static function setCoolTime(Player $player){
-        self::setData($player, ['mode' => 'CT']);
+        self::setData($player, ['cool-time' => true]);
     }
 
     public static function isCoolTime(Player $player): bool{
-        if (self::getData($player, 'mode') === 'CT'){
-            return true;
-        }
-        return false;
+        return self::getData($player, 'cool-time');
     }
 
     public static function setData(Player $player, array $data){

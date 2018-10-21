@@ -22,6 +22,12 @@ class SwordFightCommand extends PluginCommand{
         }
 
         if (!isset($args[0]) || !isset($args[1])){
+            $sender->sendMessage(
+                "/sf <ct/weapon/world>\n".
+                "ct <count>\n".
+                "weapon <add/remove/list> <id:meta>\n".
+                "world <add/remoce/list> <id:meta>"
+            );
             return false;
         }
 

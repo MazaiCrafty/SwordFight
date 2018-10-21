@@ -29,7 +29,7 @@ class EventListener implements Listener{
                 return;
             }
             
-            if (SwordManager::existsPlayer($entity) && SwordManager::Player($damager)){
+            if (SwordManager::existsPlayer($entity) && SwordManager::existsPlayer($damager)){
                 if (SwordManager::isCoolTime($entity)){
                     $event->setCancelled(true);
                     return;

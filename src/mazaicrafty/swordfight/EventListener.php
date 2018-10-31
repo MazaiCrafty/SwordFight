@@ -34,7 +34,9 @@ class EventListener implements Listener{
                     $event->setCancelled(true);
                     return;
                 }
+                return;
             }
+            $event->setCancelled(true);
         }
     }
 }

@@ -8,6 +8,10 @@ use mazaicrafty\swordfight\ConfigManager;
 
 class WeaponCommand{
 
+    private const COMMAND_LIST = "list";
+    private const COMMAND_ADD = "add";
+    private const COMMAND_REMOVE = "remove";
+
     private $sender;
     private $args = [];
 
@@ -19,14 +23,14 @@ class WeaponCommand{
     public function execute(): bool{
         $config = ConfigManager::getConfig();
         switch (true){
-            case $this->args[1] === "list":
+            case $this->args[1] === self::COMMAND_LIST:
                 $weaponIds = implode(",\n", $config->get("weapon"));
                 $this->sender->sendMessage(
                     "Weapons List\n".
                     $weaponIds
                 );
                 return true;
-            case $this->args[2] === "add":
+            case $this->args[2] === self::COMMAND_ADD:
                 if (!isset($this->args[2]) || !isset($this->args[3])){
                     $this->sender->sendMessage("パラメータが不足しています");
                     return false;
@@ -42,7 +46,7 @@ class WeaponCommand{
                 $config->set('weapon', $weapons);
                 $config->save();
                 return true;
-            case $this->args[2] === "remove":
+            case $this->args[2] === self::COMMAND_REMOVE:
                 if (!isset($this->args[2]) || !isset($this->args[3])){
                     $this->sender->sendMessage("パラメータが不足しています");
                     return false;

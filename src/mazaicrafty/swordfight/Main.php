@@ -27,22 +27,16 @@ class Main extends PluginBase{
             @mkdir($this->getDataFolder());
         }
 
-        $this->getServer()->getCommandMap()->register(
-            $this->getName(), new SwordFightCommand($this)
-        );
+        if (!ConfigManager::getConfig()->get('enable-plugin')){
+            $this->getServer()->shutdown();
+            return;
+        }
 
-        $this->getServer()->getPluginManager()->registerEvents(
-            new EventListener($this), $this
-        );
+        $this->getServer()->getCommandMap()->register($this->getName(), new SwordFightCommand($this));
 
-        $this->getScheduler()->scheduleRepeatingTask(
-            new DetectHandTask($this), 20 * 1
-        );
-    }
+        $this->getServer()->getPluginManager()->registerEvents(new EventListener($this), $this);
 
-    // only debug
-    function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool{
-        return false;
+        $this->getScheduler()->scheduleRepeatingTask(new DetectHandTask($this), 20 * 1);
     }
 
     public static function getInstance(): self{

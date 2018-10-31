@@ -8,6 +8,10 @@ use mazaicrafty\swordfight\ConfigManager;
 
 class WorldCommand{
 
+    private const COMMAND_LIST = "list";
+    private const COMMAND_ADD = "add";
+    private const COMMAND_REMOVE = "remove";
+
     private $sender;
     private $args = [];
 
@@ -19,14 +23,14 @@ class WorldCommand{
     public function execute(): bool{
         $config = ConfigManager::getConfig();
         switch (true){
-            case $this->args[1] === "list":
+            case $this->args[1] === self::COMMAND_LIST:
                 $worlds = implode(",\n", $config->get("world"));
                 $this->sender->sendMessage(
                     "Worlds List\n".
                     $worlds
                 );
                 return true;
-            case $this->args[1] === "add":
+            case $this->args[1] === self::COMMAND_ADD:
                 if (!isset($this->args[2])){
                     $this->sender->sendMessage("パラメータが不足しています");
                     return false;
@@ -37,7 +41,7 @@ class WorldCommand{
                 $config->set('world', $worlds);
                 $config->save();
                 return true;
-            case $this->args[1] === "remove":
+            case $this->args[1] === self::COMMAND_REMOVE:
                 if (!isset($this->args[2])){
                     $this->sender->sendMessage("パラメータが不足しています");
                     return false;

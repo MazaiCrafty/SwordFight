@@ -31,9 +31,7 @@ class DetectHandTask extends Task{
                 if (SwordManager::existsPlayer($player)){
                     if (SwordManager::isCoolTime($player)) continue;
                     if ($player->getInventory()->getItemInHand()->getId() === self::AIR){
-                        $this->plugin->getScheduler()->scheduleRepeatingTask(
-                            new CoolTimeTask($player), 20 * 1
-                        );
+                        $this->plugin->getScheduler()->scheduleRepeatingTask(new CoolTimeTask($player), 20 * 1);
                     }
                     continue;
                 }

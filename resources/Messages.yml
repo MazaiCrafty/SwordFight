@@ -1,0 +1,5 @@
+#PvPModeがONになった時のTIP
+pvpmode.true.popup: "PvPMode ON"
+
+#PvPModeがOFFになった時のTIP
+pvpmode.false.popup: "PvPMode OFF"

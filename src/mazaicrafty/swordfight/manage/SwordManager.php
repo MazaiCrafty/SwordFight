@@ -5,6 +5,7 @@ namespace mazaicrafty\swordfight\manage;
 use pocketmine\Player;
 use pocketmine\item\Item;
 
+use mazaicrafty\swordfight\ConfigManager;
 use mazaicrafty\swordfight\sound\Sound;
 use mazaicrafty\swordfight\sound\SoundModule;
 
@@ -20,9 +21,8 @@ class SwordManager{
      */
     public static function setEnableFight(Player $player, array $data): void{
         self::setData($player, $data);
-        $player->getLevel()->addSound(
-            SoundModule::createSoundToPlayer(Sound::CLICK, $player)
-        );
+        $player->getLevel()->addSound(SoundModule::createSoundToPlayer(ConfigManager::getConfig()->get('pvpmode-on-sound'), $player));
+        $player->sendPopup(ConfigManager::getMessage('pvpmode-true-popup'));
         $player->getInventory()->setItemInHand(self::getWeapon($player));
     }
 

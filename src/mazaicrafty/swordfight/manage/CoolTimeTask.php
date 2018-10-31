@@ -22,16 +22,14 @@ class CoolTimeTask extends Task{
     }
 
     public function onRun(int $currentTick): void{
+        $config = ConfigManager::getConfig();
         if ($this->count <= 0){
-            $this->player->getLevel()->addSound(
-                SoundModule::createSoundToPlayer(Sound::BLAZESHOOT, $this->player)
-            );
+            $this->player->getLevel()->addSound(SoundModule::createSoundToPlayer($config->get('pvpmode-off-sound'), $this->player));
             SwordManager::removePlayer($this->player);
+            $this->player->sendPopup(ConfigManager::getMessage('pvpmode.false.popup'));
             $this->getHandler()->cancel();
         }
-        $this->player->getLevel()->addSound(
-            SoundModule::createSoundToPlayer(Sound::CLICK, $this->player)
-        );
+        $this->player->getLevel()->addSound(SoundModule::createSoundToPlayer($config->get('cool-time-sound'), $this->player));
         $this->count--;
     }
 }

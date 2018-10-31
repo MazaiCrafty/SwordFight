@@ -29,7 +29,6 @@ class CoolTimeTask extends Task{
             SwordManager::removePlayer($this->player);
             $this->getHandler()->cancel();
         }
-        
         $this->player->getLevel()->addSound(
             SoundModule::createSoundToPlayer(Sound::CLICK, $this->player)
         );

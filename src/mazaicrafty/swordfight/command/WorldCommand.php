@@ -48,8 +48,11 @@ class WorldCommand{
                 }
                 $this->sender->sendMessage($this->args[2] . "を除外しました");
                 $worlds = $config->get("world");
-                array_splice($worlds, $this->args[2], 1);
-                $config->set("world", $worlds);
+                foreach ($worlds as $world){
+                    if ($world === $this->args[2]) continue;
+                    $overwrite[] = $world;
+                }
+                $config->set("world", $overwrite);
                 $config->save();
                 return true;
         }

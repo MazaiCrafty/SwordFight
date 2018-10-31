@@ -19,8 +19,6 @@ class Enchant{
     }
 
     public function enchant(): EnchantmentInstance{
-        return new EnchantmentInstance(
-            Enchantment::getEnchantment($this->id), $this->level
-        );
+        return new EnchantmentInstance(Enchantment::getEnchantment($this->id), $this->level);
     }
 }

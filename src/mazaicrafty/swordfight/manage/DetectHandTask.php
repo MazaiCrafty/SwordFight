@@ -37,7 +37,6 @@ class DetectHandTask extends Task{
                     }
                     continue;
                 }
-
                 foreach ($this->getWeaponIds() as $weaponId){
                     if ($player->getInventory()->getItemInHand()->getId() == $weaponId){
                         $id = explode(':', $weaponId);

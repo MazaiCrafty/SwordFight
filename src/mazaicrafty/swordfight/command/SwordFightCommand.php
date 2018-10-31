@@ -24,7 +24,6 @@ class SwordFightCommand extends PluginCommand{
             $sender->sendMessage("権限がありません");
             return false;
         }
-
         if (!isset($args[0]) || !isset($args[1])){
             $sender->sendMessage(
                 "/sf <ct/weapon/world>\n".
@@ -34,7 +33,6 @@ class SwordFightCommand extends PluginCommand{
             );
             return false;
         }
-
         switch (true){
             case $args[0] === self::COMMAND_MAIN:
                 $command = new CoolTimeCommand($sender, $args);

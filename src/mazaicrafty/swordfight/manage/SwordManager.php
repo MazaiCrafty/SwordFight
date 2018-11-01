@@ -43,10 +43,7 @@ class SwordManager{
      * @return  Boolean
      */
     public static function existsPlayer(Player $player): bool{
-        if (isset(self::$enablingFight[$player->getName()])){
-            return true;
-        }
-        return false;
+        return isset(self::$enablingFight[$player->getName()]);
     }
 
     /**
@@ -68,7 +65,7 @@ class SwordManager{
      * @param   Player  $player
      * @param   Array   $data
      */
-    public static function setData(Player $player, array $data){
+    public static function setData(Player $player, array $data): void{
         foreach ($data as $key => $value){
             self::$enablingFight[$player->getName()][$key] = $value;
         }
@@ -78,7 +75,7 @@ class SwordManager{
      * @param   Player  $player
      * @param   String  $key
      */
-    public static function getData(Player $player, string $key){
+    public static function getData(Player $player, string $key): void{
         return self::$enablingFight[$player->getName()][$key];
     }
 
